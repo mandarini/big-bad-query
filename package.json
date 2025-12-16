@@ -1,0 +1,17 @@
+{
+  "name": "big-bad-query",
+  "version": "1.0.0",
+  "description": "Test Supabase select query with a large field list",
+  "main": "index.js",
+  "scripts": {
+    "start": "MAX_ATTEMPTS=4 node index.js",
+    "node-fail": "node index.js",
+    "increased-size-fail": "node --max-http-header-size=80000 index.js"
+  },
+  "keywords": [],
+  "author": "Rick Wargo",
+  "license": "ISC",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.87.3"
+  }
+}
