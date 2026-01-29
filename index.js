@@ -41,6 +41,10 @@ const bigBadQuery = async (fields) => {
       .eq("Field One", 1);
     if (error) {
       console.error("[bigBadQuery] ERROR:", error);
+      console.log("\n📊 Error Details:");
+      console.log("  code:", error.code || "(empty)");
+      console.log("  hint:", error.hint || "(empty)");
+      console.log("  message:", error.message);
       throw error;
     } else
       console.log("[bigBadQuery] success");

@@ -153,3 +153,62 @@ $ npm run increased-size-fail
 [bigBadQuery] ERROR: { message: 'Bad Request' }
 test failed
 ```
+
+## Timeout Protection Demo
+
+The library now supports automatic timeout protection to prevent hanging requests.
+
+```bash
+$ npm run timeout-demo
+
+🚀 Timeout Protection Demo
+===========================
+
+Client configured with timeout: 2000ms
+This protects against indefinitely hanging requests.
+
+Making query (length: 300 chars)...
+If server is slow/unresponsive, request will abort after 2s
+
+✅ Success! Server responded within timeout.
+   Returned 1 rows
+
+✅ Demo completed
+```
+
+### Configuration
+
+Configure the timeout option when creating the Supabase client:
+
+```javascript
+const supabase = createClient(url, key, {
+  db: {
+    timeout: 2000  // Automatically abort requests after 2 seconds
+  }
+});
+```
+
+When a timeout occurs, you'll see improved error messages:
+
+```javascript
+❌ Request failed:
+
+📊 Error Analysis:
+  Code: PGRST_TIMEOUT
+  Hint: Request was aborted (timeout or manual cancellation). Note: Your request URL is 9179 characters, which may exceed server limits. Consider using views or selecting fewer fields.
+  Message: AbortError: The operation was aborted
+
+✅ Timeout protection worked!
+   Request was aborted after 2 seconds as configured.
+```
+
+### Improved Error Messages
+
+With the latest version, HeadersOverflowError now includes helpful hints:
+
+```javascript
+📊 Error Details:
+  code: PGRST_HEADERS_OVERFLOW
+  hint: HTTP headers exceeded server limits (typically 16KB). Your request URL is 10199 characters. Consider using views, selecting fewer fields, or using POST for complex queries.
+  message: TypeError: fetch failed
+```

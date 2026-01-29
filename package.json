@@ -6,13 +6,15 @@
   "scripts": {
     "start": "MAX_ATTEMPTS=4 node index.js",
     "node-fail": "node index.js",
-    "increased-size-fail": "node --max-http-header-size=80000 index.js"
+    "increased-size-fail": "node --max-http-header-size=80000 index.js",
+    "timeout-demo": "node index-timeout.js",
+    "demo-all": "npm run start && echo '\n---\n' && npm run timeout-demo"
   },
   "keywords": [],
   "author": "Rick Wargo",
   "license": "ISC",
   "dependencies": {
-    "@supabase/supabase-js": "https://pkg.pr.new/@supabase/supabase-js@2078",
+    "@supabase/supabase-js": "https://pkg.pr.new/@supabase/supabase-js@8adab00",
     "dotenv": "^17.2.3"
   }
 }
